@@ -1,0 +1,1125 @@
+{
+	"info": {
+		"_postman_id": "c42d17a7-56b1-4135-af0e-9848bc99dd7f",
+		"name": "Test Posteirb",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Session",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "24aa828f-8300-44b8-9709-e96133763c51",
+						"exec": [
+							"",
+							"var session = pm.response.json()",
+							"pm.environment.set(\"sessionID\", session.id);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c6f0dc8f-5b13-41f4-b6c2-87b0eef671cc",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\" : \"Session TEST from POSTMAN\",\n\t\"startDate\" : \"2019-01-23\",\n\t\"endDate\" : \"2019-01-24\"\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/addSession",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"addSession"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Round",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6887bde8-c4c8-4d2c-ae08-4728461ac130",
+						"exec": [
+							"",
+							"var round = pm.response.json()",
+							"pm.environment.set(\"roundID\", round.id);",
+							"pm.environment.set(\"roundState\", round.state);",
+							"pm.environment.set(\"pointer\", round.pointer);",
+							"",
+							"",
+							"pm.test(\"Check Round Status ... \", function () { ",
+							"    pm.expect(pm.environment.get(\"roundState\")).to.equal(\"inactive\"); ",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "d50b124e-0da1-40b8-a760-da841098cbcc",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"startDate\" : \"2019-01-23\",\n\t\"endDate\" : \"2019-01-24\",\n\t\"sessionID\" : {{sessionID}},\n\t\"pointer\" : \"40\"\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/addRound",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"addRound"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Group (Etudiant)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "41e1b108-e94e-4767-8c0d-4fca7969e2b9",
+						"exec": [
+							"",
+							"",
+							"pm.environment.set(\"groupName\", \"Etudiant\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "06ee0371-c0c2-4242-9122-1f9efbf534ec",
+						"exec": [
+							"",
+							"var group = pm.response.json()",
+							"pm.environment.set(\"Etudiant\", group.id);",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"{{groupName}}\"\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/addGroup",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"addGroup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Group (Enseignant)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "41e1b108-e94e-4767-8c0d-4fca7969e2b9",
+						"exec": [
+							"",
+							"",
+							"pm.environment.set(\"groupName\", \"Enseignant\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "06ee0371-c0c2-4242-9122-1f9efbf534ec",
+						"exec": [
+							"",
+							"var group = pm.response.json()",
+							"pm.environment.set(\"Enseignant\", group.id);",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"{{groupName}}\"\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/addGroup",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"addGroup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Link Group (Etudiant) to Round",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "7823c4c3-8188-4eae-b8f1-dde809033a01",
+						"exec": [
+							"pm.environment.set(\"privateCodeEtudiant\", \"1234\");",
+							"pm.environment.set(\"displayModeID\", \"2\");",
+							"pm.environment.set(\"voteMethodID\", \"1\");",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"groupID\" : {{Etudiant}},\n\t\"roundID\" : {{roundID}},\n\t\"privateCode\" : \"{{privateCodeEtudiant}}\",\n\t\"displayModeID\":\"{{displayModeID}}\",\n\t\"voteMethodID\":\"{{voteMethodID}}\"\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/linkGroupRound",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"linkGroupRound"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Link Group (Enseignant) to Round",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "68dc8df3-a0cb-4b89-8ca7-5d0f0f97e1ec",
+						"exec": [
+							"pm.environment.set(\"privateCodeEnseignant\", \"AZERTY\");",
+							"pm.environment.set(\"displayModeID\", \"1\");",
+							"pm.environment.set(\"voteMethodID\", \"2\");",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"groupID\" : {{Enseignant}},\n\t\"roundID\" : {{roundID}},\n\t\"privateCode\" : \"{{privateCodeEnseignant}}\",\n\t\"displayModeID\":\"{{displayModeID}}\",\n\t\"voteMethodID\":\"{{voteMethodID}}\"\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/linkGroupRound",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"linkGroupRound"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check links",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7506e4c2-34bd-4764-9173-4197c30ec30c",
+						"exec": [
+							"",
+							"var data = pm.response.json()",
+							"",
+							"pm.test('Number of links returned = ' + data.links.length, function () {",
+							"    pm.expect(data.links.length).to.equal(2);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"roundID\" : {{roundID}}\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/getLinks",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"getLinks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Vote while Session is (inactive)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "714768db-d0f6-4321-ad27-19b168404faa",
+						"exec": [
+							"",
+							"pm.environment.set(\"voterID\", \"1\");",
+							"pm.environment.set(\"candidatID\", \"toto@enseirb-matmeca.fr\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "d93b37bf-ea02-4e57-a55b-a2e927960910",
+						"exec": [
+							"",
+							"var data = pm.response.json()",
+							"",
+							"pm.test('we can\\'t vote', function () {",
+							"    pm.expect(data.message).to.equal(false);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"candidatID\" : \"{{candidatID}}\",\n\t\"pointer\" : \"{{pointer}}\",\n\t\"privateCode\" : \"{{privateCodeEnseignant}}\",\n\t\"voterID\" : \"{{voterID}}\"\n\t\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/vote",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"vote"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set Session to ACTIVE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6a030952-064a-40c6-abee-83bfec4f2ffd",
+						"exec": [
+							"",
+							"var data = pm.response.json()",
+							"",
+							"pm.test('Session updated', function () {",
+							"    pm.expect(data.error).to.equal(false);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"roundID\" : {{roundID}},\n\t\"state\" : \"active\"\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/changeRoundState",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"changeRoundState"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Vote (ENSEIGNANT)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "714768db-d0f6-4321-ad27-19b168404faa",
+						"exec": [
+							"",
+							"pm.environment.set(\"voterID\", \"1\");",
+							"pm.environment.set(\"candidatID\", \"toto@enseirb-matmeca.fr\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "d93b37bf-ea02-4e57-a55b-a2e927960910",
+						"exec": [
+							"",
+							"var data = pm.response.json()",
+							"",
+							"pm.test('we can vote', function () {",
+							"    pm.expect(data.message).to.equal(true);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"candidatID\" : \"{{candidatID}}\",\n\t\"pointer\" : \"{{pointer}}\",\n\t\"privateCode\" : \"{{privateCodeEnseignant}}\",\n\t\"voterID\" : \"{{voterID}}\"\n\t\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/vote",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"vote"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Vote (ETUDIANT)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "714768db-d0f6-4321-ad27-19b168404faa",
+						"exec": [
+							"",
+							"pm.environment.set(\"voterID\", \"2\");",
+							"pm.environment.set(\"candidatID\", \"bobo@enseirb-matmeca.fr\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "d93b37bf-ea02-4e57-a55b-a2e927960910",
+						"exec": [
+							"",
+							"var data = pm.response.json()",
+							"",
+							"pm.test('we can vote', function () {",
+							"    pm.expect(data.message).to.equal(true);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"candidatID\" : \"{{candidatID}}\",\n\t\"pointer\" : \"{{pointer}}\",\n\t\"privateCode\" : \"{{privateCodeEtudiant}}\",\n\t\"voterID\" : \"{{voterID}}\"\n\t\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/vote",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"vote"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Vote (ENSEIGNANT) AGAIN",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "714768db-d0f6-4321-ad27-19b168404faa",
+						"exec": [
+							"",
+							"pm.environment.set(\"voterID\", \"1\");",
+							"pm.environment.set(\"candidatID\", \"toto@enseirb-matmeca.fr\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "d93b37bf-ea02-4e57-a55b-a2e927960910",
+						"exec": [
+							"",
+							"var data = pm.response.json()",
+							"",
+							"pm.test('we can\\'t vote twice', function () {",
+							"    pm.expect(data.message).to.equal(false);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"candidatID\" : \"{{candidatID}}\",\n\t\"pointer\" : \"{{pointer}}\",\n\t\"privateCode\" : \"{{privateCodeEnseignant}}\",\n\t\"voterID\" : \"{{voterID}}\"\n\t\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/vote",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"vote"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Vote (ETUDIANT) AGAIN",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "714768db-d0f6-4321-ad27-19b168404faa",
+						"exec": [
+							"",
+							"pm.environment.set(\"voterID\", \"2\");",
+							"pm.environment.set(\"candidatID\", \"bobo@enseirb-matmeca.fr\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "d93b37bf-ea02-4e57-a55b-a2e927960910",
+						"exec": [
+							"",
+							"var data = pm.response.json()",
+							"",
+							"pm.test('we can\\'t vote twice', function () {",
+							"    pm.expect(data.message).to.equal(false);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"candidatID\" : \"{{candidatID}}\",\n\t\"pointer\" : \"{{pointer}}\",\n\t\"privateCode\" : \"{{privateCodeEtudiant}}\",\n\t\"voterID\" : \"{{voterID}}\"\n\t\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/vote",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"vote"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Vote (ETUDIANT)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "714768db-d0f6-4321-ad27-19b168404faa",
+						"exec": [
+							"",
+							"pm.environment.set(\"voterID\", \"3\");",
+							"pm.environment.set(\"candidatID\", \"tata@enseirb-matmeca.fr\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "d93b37bf-ea02-4e57-a55b-a2e927960910",
+						"exec": [
+							"",
+							"var data = pm.response.json()",
+							"",
+							"pm.test('we can vote', function () {",
+							"    pm.expect(data.message).to.equal(true);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"candidatID\" : \"{{candidatID}}\",\n\t\"pointer\" : \"{{pointer}}\",\n\t\"privateCode\" : \"{{privateCodeEtudiant}}\",\n\t\"voterID\" : \"{{voterID}}\"\n\t\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/vote",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"vote"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Vote (ETUDIANT)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "714768db-d0f6-4321-ad27-19b168404faa",
+						"exec": [
+							"",
+							"pm.environment.set(\"voterID\", \"4\");",
+							"pm.environment.set(\"candidatID\", \"lala@enseirb-matmeca.fr\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "d93b37bf-ea02-4e57-a55b-a2e927960910",
+						"exec": [
+							"",
+							"var data = pm.response.json()",
+							"",
+							"pm.test('we can vote', function () {",
+							"    pm.expect(data.message).to.equal(true);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"candidatID\" : \"{{candidatID}}\",\n\t\"pointer\" : \"{{pointer}}\",\n\t\"privateCode\" : \"{{privateCodeEtudiant}}\",\n\t\"voterID\" : \"{{voterID}}\"\n\t\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/vote",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"vote"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Vote (ENSEIGNANT)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "714768db-d0f6-4321-ad27-19b168404faa",
+						"exec": [
+							"",
+							"pm.environment.set(\"voterID\", \"5\");",
+							"pm.environment.set(\"candidatID\", \"haha@enseirb-matmeca.fr\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "d93b37bf-ea02-4e57-a55b-a2e927960910",
+						"exec": [
+							"",
+							"var data = pm.response.json()",
+							"",
+							"pm.test('we can vote', function () {",
+							"    pm.expect(data.message).to.equal(true);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"candidatID\" : \"{{candidatID}}\",\n\t\"pointer\" : \"{{pointer}}\",\n\t\"privateCode\" : \"{{privateCodeEnseignant}}\",\n\t\"voterID\" : \"{{voterID}}\"\n\t\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/vote",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"vote"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Vote (ENSEIGNANT)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "714768db-d0f6-4321-ad27-19b168404faa",
+						"exec": [
+							"",
+							"pm.environment.set(\"voterID\", \"6\");",
+							"pm.environment.set(\"candidatID\", \"haha@enseirb-matmeca.fr\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "d93b37bf-ea02-4e57-a55b-a2e927960910",
+						"exec": [
+							"",
+							"var data = pm.response.json()",
+							"",
+							"pm.test('we can vote', function () {",
+							"    pm.expect(data.message).to.equal(true);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"candidatID\" : \"{{candidatID}}\",\n\t\"pointer\" : \"{{pointer}}\",\n\t\"privateCode\" : \"{{privateCodeEnseignant}}\",\n\t\"voterID\" : \"{{voterID}}\"\n\t\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/vote",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"vote"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Vote (ENSEIGNANT)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "714768db-d0f6-4321-ad27-19b168404faa",
+						"exec": [
+							"",
+							"pm.environment.set(\"voterID\", \"7\");",
+							"pm.environment.set(\"candidatID\", \"baba@enseirb-matmeca.fr\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "d93b37bf-ea02-4e57-a55b-a2e927960910",
+						"exec": [
+							"",
+							"var data = pm.response.json()",
+							"",
+							"pm.test('we can vote', function () {",
+							"    pm.expect(data.message).to.equal(true);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"candidatID\" : \"{{candidatID}}\",\n\t\"pointer\" : \"{{pointer}}\",\n\t\"privateCode\" : \"{{privateCodeEnseignant}}\",\n\t\"voterID\" : \"{{voterID}}\"\n\t\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/vote",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"vote"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Result (Enseignant)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "35b8ba3b-eb0c-4d6b-8ee7-43cbc175fce0",
+						"exec": [
+							"pm.environment.set(\"candidatID\", \"baba@enseirb-matmeca.fr\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "9eed2dfa-18c4-4e8f-8ac4-0fa9e5a4fa65",
+						"exec": [
+							"",
+							"var data = pm.response.json()",
+							"",
+							"pm.test('Number of results returned = ' + data.length, function () {",
+							"    pm.expect(data.length).to.be.above(5);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"candidatID\" : \"{{candidatID}}\",\n\t\"pointer\" : \"{{pointer}}\",\n\t\"privateCode\" : \"{{privateCodeEnseignant}}\"\n\t\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/getResults",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"getResults"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Result (Etudiant)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "35b8ba3b-eb0c-4d6b-8ee7-43cbc175fce0",
+						"exec": [
+							"pm.environment.set(\"candidatID\", \"baba@enseirb-matmeca.fr\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "50c0d088-18a5-4a35-a17e-4e76fb693e3f",
+						"exec": [
+							"",
+							"var data = pm.response.json()",
+							"",
+							"pm.test('Number of results returned = ' + data.length, function () {",
+							"    pm.expect(data.length).to.equal(5);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"candidatID\" : \"{{candidatID}}\",\n\t\"pointer\" : \"{{pointer}}\",\n\t\"privateCode\" : \"{{privateCodeEtudiant}}\"\n\t\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/getResults",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"getResults"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "test",
+			"script": {
+				"id": "ec0c7486-856b-42a6-a3d3-a2896757c2a0",
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"response is ok\", function () {",
+					"    pm.response.to.have.status(200);",
+					"});"
+				]
+			}
+		}
+	]
+}

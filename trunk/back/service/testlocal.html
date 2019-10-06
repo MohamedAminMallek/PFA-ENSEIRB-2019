@@ -1,0 +1,18 @@
+<html>
+<body onload="onload()">
+    <h1>HELLO WORLD</h1>
+</body>
+
+
+</html>
+
+<script>
+function onload()
+{
+    id = localStorage.getItem('id');
+    if(id == undefined)
+        localStorage.setItem('id','AMIN')
+    else
+        alert("t'as déja voté")
+}
+</script>
