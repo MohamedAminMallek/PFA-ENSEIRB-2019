@@ -16,7 +16,7 @@
     "bootstrap-vue": "^2.0.0-rc.11",
     "js-file-download": "^0.4.4",
     "js-sha256": "^0.9.0",
-    "luxon": "^1.10.0",
+    "luxon": "^2.5.2",
     "qrcode.vue": "^1.6.1",
     "vue": "^2.5.2",
     "vue-datetime": "^1.0.0-beta.10",
